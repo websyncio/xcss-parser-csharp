@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from c:\dev\xcss-parser-csharp\AntlrCSharp\XCSSParser.g4 by ANTLR 4.9.2
+// Generated from c:\dev\xcss-parser-csharp\AntlrCSharp\antlr\XCSSParser.g4 by ANTLR 4.9.2
 
 // Unreachable code detected
 #pragma warning disable 0162
