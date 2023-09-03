@@ -32,6 +32,12 @@ using IToken = Antlr4.Runtime.IToken;
 [System.CLSCompliant(false)]
 public interface IXCSSParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="XCSSParser.parse"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitParse([NotNull] XCSSParser.ParseContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="XCSSParser.selectorGroup"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

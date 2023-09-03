@@ -1,7 +1,7 @@
 ﻿using AntlrCSharp.builder;
 using NUnit.Framework;
 
-namespace AntlrCSharpTests
+namespace XcssParserTests
 {
     [TestFixture]
     public class XpathBuilderTest

@@ -41,6 +41,9 @@ options {
 // pseudoPage: ':' ident ws;
 
 // Selectors https://www.w3.org/TR/css3-selectors/
+
+parse: selectorGroup;
+
 selectorGroup: selector ( Comma ws selector)*;
 
 selector:

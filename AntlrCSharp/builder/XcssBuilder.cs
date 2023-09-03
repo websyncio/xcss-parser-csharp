@@ -1,4 +1,5 @@
 ﻿using Antlr4.Runtime;
+using Antlr4.Runtime.Tree;
 
 namespace AntlrCSharp.builder
 {
@@ -11,10 +12,11 @@ namespace AntlrCSharp.builder
             XCSSLexer xcssLexer = new XCSSLexer(inputStream);
             CommonTokenStream commonTokenStream = new CommonTokenStream(xcssLexer);
             XCSSParser xcssParser = new XCSSParser(commonTokenStream);
-            var visitor = new CollectXcssPartsVisitor();
-            List<XCSSPart> parts = visitor.Visit(xcssParser.selectorGroup());
-            string css = CssBuilder.BuildFromParts(parts);
-            string xpath = XPathBuilder.BuildFromParts(parts);
+            var listener = new CollectXcssPartsListener();
+            ParseTreeWalker walker = new ParseTreeWalker();
+            walker.Walk(listener, xcssParser.parse());
+            string css = CssBuilder.BuildFromParts(listener.Parts);
+            string xpath = XPathBuilder.BuildFromParts(listener.Parts);
 
             return new Xcss(css, xpath);
         }
