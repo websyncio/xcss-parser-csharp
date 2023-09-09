@@ -6,6 +6,8 @@
         Equal,
 
         //[StringValue("~")]
-        Contains
+        Contains,
+        Prefix,
+        Suffix
     }
 }

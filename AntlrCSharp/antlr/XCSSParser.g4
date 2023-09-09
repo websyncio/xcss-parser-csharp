@@ -42,7 +42,7 @@ options {
 
 // Selectors https://www.w3.org/TR/css3-selectors/
 
-parse: selectorGroup;
+parse: selectorGroup EOF;
 
 selectorGroup: selector ( Comma ws selector)*;
 
@@ -53,14 +53,15 @@ selector:
 
 combinator: Plus ws | Greater ws | Tilde ws | Space ws;
 
-simpleSelectorSequence: (typeSelector | universal) (
-		Hash
-		| className
-		| attrib
-		| pseudo
-		| negation
-	)*
-	| ( Hash | className | attrib | pseudo | negation)+;
+simpleSelectorSequence:
+	tagName (elementId | className | attrib | pseudo | negation)*
+	| (elementId | className | attrib | pseudo | negation)+;
+
+elementId: Hash elementIdValue;
+
+elementIdValue: Name;
+
+tagName: (typeSelector | universal);
 
 typeSelector: typeNamespacePrefix? elementName;
 
@@ -70,19 +71,24 @@ elementName: ident;
 
 universal: typeNamespacePrefix? '*';
 
-className: '.' ident;
+className: '.' classNameValue;
+
+classNameValue: ident;
 
 attrib:
-	'[' ws typeNamespacePrefix? ident ws (
-		(
-			PrefixMatch
-			| SuffixMatch
-			| SubstringMatch
-			| '='
-			| Includes
-			| DashMatch
-		) ws (ident | String_) ws
-	)? ']';
+	'[' ws attribName ws (attribMatchStyle ws attribValue ws)? ']';
+
+attribName: typeNamespacePrefix? ident;
+
+attribMatchStyle:
+	PrefixMatch
+	| SuffixMatch
+	| SubstringMatch
+	| '='
+	| Includes
+	| DashMatch;
+
+attribValue: ident | String_;
 
 pseudo
 /* '::' starts a pseudo-element, ':' a pseudo-class */
@@ -112,7 +118,7 @@ negation: PseudoNot ws negationArg ws ')';
 negationArg:
 	typeSelector
 	| universal
-	| Hash
+	| elementId
 	| className
 	| attrib
 	| pseudo;

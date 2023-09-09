@@ -227,7 +227,7 @@ Includes: '~=';
 
 DashMatch: '|=';
 
-Hash: '#' Name;
+Hash: '#';
 
 Import: At I M P O R T;
 

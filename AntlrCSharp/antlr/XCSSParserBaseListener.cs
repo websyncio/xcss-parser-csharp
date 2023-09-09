@@ -96,6 +96,42 @@ public partial class XCSSParserBaseListener : IXCSSParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitSimpleSelectorSequence([NotNull] XCSSParser.SimpleSelectorSequenceContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="XCSSParser.elementId"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterElementId([NotNull] XCSSParser.ElementIdContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="XCSSParser.elementId"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitElementId([NotNull] XCSSParser.ElementIdContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="XCSSParser.elementIdValue"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterElementIdValue([NotNull] XCSSParser.ElementIdValueContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="XCSSParser.elementIdValue"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitElementIdValue([NotNull] XCSSParser.ElementIdValueContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="XCSSParser.tagName"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterTagName([NotNull] XCSSParser.TagNameContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="XCSSParser.tagName"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitTagName([NotNull] XCSSParser.TagNameContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="XCSSParser.typeSelector"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -156,6 +192,18 @@ public partial class XCSSParserBaseListener : IXCSSParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitClassName([NotNull] XCSSParser.ClassNameContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="XCSSParser.classNameValue"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterClassNameValue([NotNull] XCSSParser.ClassNameValueContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="XCSSParser.classNameValue"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitClassNameValue([NotNull] XCSSParser.ClassNameValueContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="XCSSParser.attrib"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -167,6 +215,42 @@ public partial class XCSSParserBaseListener : IXCSSParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitAttrib([NotNull] XCSSParser.AttribContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="XCSSParser.attribName"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterAttribName([NotNull] XCSSParser.AttribNameContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="XCSSParser.attribName"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitAttribName([NotNull] XCSSParser.AttribNameContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="XCSSParser.attribMatchStyle"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterAttribMatchStyle([NotNull] XCSSParser.AttribMatchStyleContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="XCSSParser.attribMatchStyle"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitAttribMatchStyle([NotNull] XCSSParser.AttribMatchStyleContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="XCSSParser.attribValue"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterAttribValue([NotNull] XCSSParser.AttribValueContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="XCSSParser.attribValue"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitAttribValue([NotNull] XCSSParser.AttribValueContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="XCSSParser.pseudo"/>.
 	/// <para>The default implementation does nothing.</para>

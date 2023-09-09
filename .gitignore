@@ -287,3 +287,4 @@ AntlrCSharp/SpeakBaseVisitor.cs
 AntlrCSharp/SpeakLexer.cs
 AntlrCSharp/SpeakLexer.tokens
 AntlrCSharp/SpeakParser.cs
+*.interp

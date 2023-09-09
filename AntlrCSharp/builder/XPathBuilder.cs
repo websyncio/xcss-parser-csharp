@@ -26,7 +26,7 @@
 
         public const string NAMESPACE_AXIS = "namespace::";
 
-        internal static string BuildFromParts(List<XCSSPart> parts)
+        internal static string BuildFromParts(List<XCSSSelector> parts)
         {
             throw new NotImplementedException();
         }

@@ -3,6 +3,6 @@
         "mode": "external",
         "language": "CSharp",
         "listeners": true,
-        "visitors": true
+        "visitors": false
     }
 }

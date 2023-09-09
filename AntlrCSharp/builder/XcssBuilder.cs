@@ -15,8 +15,8 @@ namespace AntlrCSharp.builder
             var listener = new CollectXcssPartsListener();
             ParseTreeWalker walker = new ParseTreeWalker();
             walker.Walk(listener, xcssParser.parse());
-            string css = CssBuilder.BuildFromParts(listener.Parts);
-            string xpath = XPathBuilder.BuildFromParts(listener.Parts);
+            string css = CssBuilder.BuildFromParts(listener.Selectors);
+            string xpath = XPathBuilder.BuildFromParts(listener.Selectors);
 
             return new Xcss(css, xpath);
         }

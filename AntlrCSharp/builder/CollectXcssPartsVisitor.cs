@@ -2,11 +2,11 @@
 
 namespace AntlrCSharp.builder
 {
-    internal class CollectXcssPartsVisitor:XCSSParserBaseVisitor<List<XCSSPart>>
+    internal class CollectXcssPartsVisitor:XCSSParserBaseVisitor<List<XCSSSelector>>
     {
-        List<XCSSPart> Parts = new List<XCSSPart>();
+        List<XCSSSelector> Parts = new List<XCSSSelector>();
         
-        public override List<XCSSPart> VisitSelector([NotNull] XCSSParser.SelectorContext context)
+        public override List<XCSSSelector> VisitSelector([NotNull] XCSSParser.SelectorContext context)
         {
             return base.VisitSelector(context);
         }

@@ -8,6 +8,8 @@
 
         public string Value;
 
+        public XcssAttribute() { }
+
         public XcssAttribute(string name, string value, AttributeMatchStyle matchStyle)
         {
             this.Name = name;

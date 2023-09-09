@@ -80,6 +80,7 @@ UnexpectedCharacter=64
 '-->'=19
 '~='=20
 '|='=21
+'#'=22
 '@charset '=27
 'url('=30
 '+'=37
