@@ -8,6 +8,23 @@ namespace AntlrCSharp.builder
         public XcssAttribute Attribute = new XcssAttribute();
         public XcssElement Element = new XcssElement();
         public XcssSelector Selector = new XcssSelector();
+
+        private int _xpathConditionLevel=0;
+
+        internal void StartXpathCondition(string xpathCondition)
+        {
+            if (_xpathConditionLevel == 0)
+            {
+                Element.SubelementXPathConditions.Add(xpathCondition);
+            }
+            _xpathConditionLevel++;
+        }
+
+        internal void FinishXpathCondition()
+        {
+            _xpathConditionLevel--;
+        }
+
     }
 
     internal class CollectXcssPartsListener : XCSSParserBaseListener
@@ -172,6 +189,28 @@ namespace AntlrCSharp.builder
         {
             throw new NotImplementedException();
             //base.EnterNegation(context);
+        }
+
+        public override void EnterElementIndex([NotNull] XCSSParser.ElementIndexContext context)
+        {
+            if (_context.Element.Index != null)
+            {
+                throw new ParseCanceledException("Element can not contain several indexes.");
+            }
+            _context.Element.Index = int.Parse(context.GetText());
+            base.EnterElementIndex(context);
+        }
+
+        public override void EnterXpathCondition([NotNull] XCSSParser.XpathConditionContext context)
+        {
+            _context.StartXpathCondition(context.GetText());
+            base.EnterXpathCondition(context);
+        }
+
+        public override void ExitXpathCondition([NotNull] XCSSParser.XpathConditionContext context)
+        {
+            _context.FinishXpathCondition();
+            base.ExitXpathCondition(context);
         }
 
     }

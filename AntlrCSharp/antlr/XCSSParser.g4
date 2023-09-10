@@ -82,7 +82,17 @@ className: '.' classNameValue;
 classNameValue: ident;
 
 condition:
-	'[' (attrib | text | combinator? subelementSelector) ']';
+	'[' (
+		attrib
+		| text
+		| combinator? subelementSelector
+		| elementIndex
+		| xpathCondition
+	) ']';
+
+xpathCondition: ~('[')* ('[' xpathCondition ']')? ~(']')*;
+
+elementIndex: Integer;
 
 subelementSelector: selector;
 

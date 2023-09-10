@@ -14,6 +14,7 @@
         public List<XcssSelector> SubelementConditions = new List<XcssSelector>();
         public List<string> SubelementXPathConditions = new List<string>();
         public List<string> Conditions = new List<string>();
+        public int? Index;
     }
 
     internal class XcssSelector

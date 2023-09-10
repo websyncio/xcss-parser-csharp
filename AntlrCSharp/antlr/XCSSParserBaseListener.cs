@@ -216,6 +216,30 @@ public partial class XCSSParserBaseListener : IXCSSParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitCondition([NotNull] XCSSParser.ConditionContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="XCSSParser.xpathCondition"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterXpathCondition([NotNull] XCSSParser.XpathConditionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="XCSSParser.xpathCondition"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitXpathCondition([NotNull] XCSSParser.XpathConditionContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="XCSSParser.elementIndex"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterElementIndex([NotNull] XCSSParser.ElementIndexContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="XCSSParser.elementIndex"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitElementIndex([NotNull] XCSSParser.ElementIndexContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="XCSSParser.subelementSelector"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

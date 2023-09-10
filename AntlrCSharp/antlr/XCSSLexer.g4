@@ -320,7 +320,9 @@ Tilde: '~';
 
 PseudoNot: ':' N O T '(';
 
-Number: [0-9]+ | [0-9]* '.' [0-9]+;
+Integer: [0-9]+;
+
+Number: Integer | [0-9]* '.' [0-9]+;
 
 String_:
 	'"' (~[\n\r\f\\"] | '\\' Newline | Nonascii | Escape)* '"'
