@@ -54,8 +54,14 @@ selector:
 combinator: Plus ws | Greater ws | Tilde ws | Space ws;
 
 simpleSelectorSequence:
-	tagName (elementId | className | attrib | pseudo | negation)*
-	| (elementId | className | attrib | pseudo | negation)+;
+	tagName (
+		elementId
+		| className
+		| condition
+		| pseudo
+		| negation
+	)*
+	| (elementId | className | condition | pseudo | negation)+;
 
 elementId: Hash elementIdValue;
 
@@ -75,8 +81,15 @@ className: '.' classNameValue;
 
 classNameValue: ident;
 
-attrib:
-	'[' ws attribName ws (attribMatchStyle ws attribValue ws)? ']';
+condition: '[' (attrib | text) ']';
+
+text: textMatchStyle? textValue;
+
+textValue: '"' ~('"')* '"' | '\'' ~('\'')* '\'';
+
+textMatchStyle: '~';
+
+attrib: ws attribName? ws (attribMatchStyle ws attribValue ws)?;
 
 attribName: typeNamespacePrefix? ident;
 

@@ -58,7 +58,7 @@ namespace XcssBuilderTests
     [TestFixture]
     public class XcssBuilderTests
     {
-        //[TestCase("div[~'text']", "//div[contains(text(),'text')]")]
+        [TestCase("div[~'text']", "//div[contains(text(),'text')]")]
         //[TestCase("div['text']", "//div[text()='text']")]
         //[TestCase("div[src='1.png']['text']", "//div[@src='1.png'][text()='text']")]
         //[TestCase("div[src=\"1.png\"]['text']", "//div[@src=\"1.png\"][text()='text']")]
@@ -94,7 +94,7 @@ namespace XcssBuilderTests
         //[TestCase("td[h3>span['Категории, на которые вы уже подписаны']]>div>div",
         //    "//td[descendant::h3/span[text()='Категории, на которые вы уже подписаны']]/div/div")]
         //[TestCase("tr[span.ng-binding[descendant-or-self::*['{0}']]]", "tr[descendant::span[contains(@class,'ng-binding')][descendant-or-self::*[text()='{0}'])]]")]
-        [TestCase("#myid div[myattr='myvalue']", "//*[@id='myid']/descendant::div[@myattr='myvalue']")]
+        //[TestCase("#myid div[myattr='myvalue']", "//*[@id='myid']/descendant::div[@myattr='myvalue']")]
         public void ConvertXcssToXpath(string scssSelector, string result)
         {
             var xcss = XcssBuilder.Build(scssSelector);

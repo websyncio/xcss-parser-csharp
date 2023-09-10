@@ -18,6 +18,8 @@ Multiply: '*';
 Divide: '/';
 Pipe: '|';
 Underscore: '_';
+Quote: '\'';
+DoubleQuote: '"';
 
 fragment At: '@';
 

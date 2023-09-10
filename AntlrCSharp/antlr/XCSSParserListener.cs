@@ -171,6 +171,46 @@ public interface IXCSSParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitClassNameValue([NotNull] XCSSParser.ClassNameValueContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="XCSSParser.condition"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterCondition([NotNull] XCSSParser.ConditionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="XCSSParser.condition"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitCondition([NotNull] XCSSParser.ConditionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="XCSSParser.text"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterText([NotNull] XCSSParser.TextContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="XCSSParser.text"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitText([NotNull] XCSSParser.TextContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="XCSSParser.textValue"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterTextValue([NotNull] XCSSParser.TextValueContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="XCSSParser.textValue"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitTextValue([NotNull] XCSSParser.TextValueContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="XCSSParser.textMatchStyle"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterTextMatchStyle([NotNull] XCSSParser.TextMatchStyleContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="XCSSParser.textMatchStyle"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitTextMatchStyle([NotNull] XCSSParser.TextMatchStyleContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="XCSSParser.attrib"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

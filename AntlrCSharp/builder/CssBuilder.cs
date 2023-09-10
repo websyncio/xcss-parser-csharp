@@ -25,7 +25,7 @@
             return s.Substring(0, s.Length - 1);
         }
 
-        internal static string BuildFromParts(List<XCSSSelector> parts)
+        internal static string BuildFromParts(List<XcssSelector> parts)
         {
             throw new NotImplementedException();
         }

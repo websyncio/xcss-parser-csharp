@@ -204,6 +204,54 @@ public partial class XCSSParserBaseListener : IXCSSParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitClassNameValue([NotNull] XCSSParser.ClassNameValueContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="XCSSParser.condition"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterCondition([NotNull] XCSSParser.ConditionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="XCSSParser.condition"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitCondition([NotNull] XCSSParser.ConditionContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="XCSSParser.text"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterText([NotNull] XCSSParser.TextContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="XCSSParser.text"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitText([NotNull] XCSSParser.TextContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="XCSSParser.textValue"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterTextValue([NotNull] XCSSParser.TextValueContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="XCSSParser.textValue"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitTextValue([NotNull] XCSSParser.TextValueContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="XCSSParser.textMatchStyle"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterTextMatchStyle([NotNull] XCSSParser.TextMatchStyleContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="XCSSParser.textMatchStyle"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitTextMatchStyle([NotNull] XCSSParser.TextMatchStyleContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="XCSSParser.attrib"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

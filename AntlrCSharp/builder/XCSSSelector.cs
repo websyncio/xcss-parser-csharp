@@ -1,6 +1,6 @@
 ﻿namespace AntlrCSharp.builder
 {
-    internal class XCSSElement
+    internal class XcssElement
     {
         public string Combinator;
         public string Xcss;
@@ -10,13 +10,14 @@
         public String Id;
         public String Condition;
         public List<string> ClassNames = new List<string>();
+        public List<XcssTextCondition> TextConditions = new List<XcssTextCondition>();
         public List<XcssAttribute> Attributes = new List<XcssAttribute>();
         public List<string> Conditions = new List<string>();
         public List<string> SubelementXpaths = new List<string>();
     }
 
-    internal class XCSSSelector
+    internal class XcssSelector
     {
-        public List<XCSSElement> Elements= new List<XCSSElement>();
+        public List<XcssElement> Elements= new List<XcssElement>();
     }
 }
