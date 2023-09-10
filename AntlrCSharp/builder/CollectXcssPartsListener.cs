@@ -2,12 +2,18 @@
 
 namespace AntlrCSharp.builder
 {
+    internal class XcssSelectorContext
+    {
+        public XcssTextCondition Text = new XcssTextCondition();
+        public XcssAttribute Attribute = new XcssAttribute();
+        public XcssElement Element = new XcssElement();
+        public XcssSelector Selector = new XcssSelector();
+    }
+
     internal class CollectXcssPartsListener : XCSSParserBaseListener
     {
-        private XcssTextCondition _currentText = new XcssTextCondition();
-        private XcssAttribute _currentAttribute = new XcssAttribute();
-        private XcssElement _currentElement = new XcssElement();
-        private XcssSelector _currentSelector = new XcssSelector();
+        private Stack<XcssSelectorContext> _parentContexts = new Stack<XcssSelectorContext>();
+        private XcssSelectorContext _context = new XcssSelectorContext();
         public List<XcssSelector> Selectors = new List<XcssSelector>();
 
         public override void EnterSelectorGroup([NotNull] XCSSParser.SelectorGroupContext context)
@@ -16,48 +22,71 @@ namespace AntlrCSharp.builder
             base.EnterSelectorGroup(context);
         }
 
+        public override void EnterSelector([NotNull] XCSSParser.SelectorContext context)
+        {
+            _context = new XcssSelectorContext();
+            base.EnterSelector(context);
+        }
+
         public override void ExitSelector([NotNull] XCSSParser.SelectorContext context)
         {
-            Selectors.Add(_currentSelector);
-            _currentSelector = new XcssSelector();
+            if (!_parentContexts.Any())
+            {
+                // This is a root level selector, not a subelement one
+                Selectors.Add(_context.Selector);
+            }
             base.ExitSelector(context);
+        }
+
+        public override void EnterSubelementSelector([NotNull] XCSSParser.SubelementSelectorContext context)
+        {
+            _parentContexts.Push(_context);
+            base.EnterSubelementSelector(context);
+        }
+
+        public override void ExitSubelementSelector([NotNull] XCSSParser.SubelementSelectorContext context)
+        {
+            var parentContext = _parentContexts.Pop();
+            parentContext.Element.SubelementConditions.Add(_context.Selector);
+            _context = parentContext;
+            base.ExitSubelementSelector(context);
         }
 
 
         public override void ExitSimpleSelectorSequence([NotNull] XCSSParser.SimpleSelectorSequenceContext context)
         {
-            _currentSelector.Elements.Add(_currentElement);
-            _currentElement = new XcssElement();
+            _context.Selector.Elements.Add(_context.Element);
+            _context.Element = new XcssElement();
             base.ExitSimpleSelectorSequence(context);
         }
 
         public override void EnterCombinator([NotNull] XCSSParser.CombinatorContext context)
         {
-            _currentElement.Combinator = context.GetText();
+            _context.Element.Combinator = context.GetText();
             base.EnterCombinator(context);
         }
 
         public override void EnterTagName([NotNull] XCSSParser.TagNameContext context)
         {
-            _currentElement.Tag = context.GetText();
+            _context.Element.Tag = context.GetText();
             base.EnterTagName(context);
         }
 
         public override void EnterElementIdValue([NotNull] XCSSParser.ElementIdValueContext context)
         {
-            _currentElement.Id = context.GetText();
+            _context.Element.Id = context.GetText();
             base.EnterElementIdValue(context);
         }
 
         public override void EnterText([NotNull] XCSSParser.TextContext context)
         {
-            _currentText = new XcssTextCondition();
+            _context.Text = new XcssTextCondition();
             base.EnterText(context);
         }
 
         public override void ExitText([NotNull] XCSSParser.TextContext context)
         {
-            _currentElement.TextConditions.Add(_currentText);
+            _context.Element.TextConditions.Add(_context.Text);
             base.ExitText(context);
         }
 
@@ -66,7 +95,7 @@ namespace AntlrCSharp.builder
             switch (context.GetText())
             {
                 case "~":
-                    _currentText.MatchStyle = AttributeMatchStyle.Contains;
+                    _context.Text.MatchStyle = AttributeMatchStyle.Contains;
                     break;
                 default:
                     throw new ParseCanceledException("Invalid match style for text.");
@@ -76,25 +105,25 @@ namespace AntlrCSharp.builder
 
         public override void EnterTextValue([NotNull] XCSSParser.TextValueContext context)
         {
-            _currentText.Value = context.GetText();
+            _context.Text.Value = context.GetText();
             base.EnterTextValue(context);
         }
 
         public override void EnterAttrib([NotNull] XCSSParser.AttribContext context)
         {
-            _currentAttribute = new XcssAttribute();
+            _context.Attribute = new XcssAttribute();
             base.EnterAttrib(context);
         }
 
         public override void ExitAttrib([NotNull] XCSSParser.AttribContext context)
         {
-            _currentElement.Attributes.Add(_currentAttribute);
+            _context.Element.Attributes.Add(_context.Attribute);
             base.ExitAttrib(context);
         }
 
         public override void EnterAttribName([NotNull] XCSSParser.AttribNameContext context)
         {
-            _currentAttribute.Name = context.GetText();
+            _context.Attribute.Name = context.GetText();
             base.EnterAttribName(context);
         }
 
@@ -103,17 +132,17 @@ namespace AntlrCSharp.builder
             switch (context.GetText())
             {
                 case "^=":
-                    _currentAttribute.MatchStyle = AttributeMatchStyle.Prefix;
+                    _context.Attribute.MatchStyle = AttributeMatchStyle.Prefix;
                     break;
                 case "$=":
-                    _currentAttribute.MatchStyle = AttributeMatchStyle.Suffix;
+                    _context.Attribute.MatchStyle = AttributeMatchStyle.Suffix;
                     break;
                 case "*=":
                 case "~=":
-                    _currentAttribute.MatchStyle = AttributeMatchStyle.Contains;
+                    _context.Attribute.MatchStyle = AttributeMatchStyle.Contains;
                     break;
                 case "=":
-                    _currentAttribute.MatchStyle = AttributeMatchStyle.Equal;
+                    _context.Attribute.MatchStyle = AttributeMatchStyle.Equal;
                     break;
                 default:
                     throw new ParseCanceledException("Invalid match style for attribute.");
@@ -123,19 +152,19 @@ namespace AntlrCSharp.builder
 
         public override void EnterAttribValue([NotNull] XCSSParser.AttribValueContext context)
         {
-            _currentAttribute.Value = context.GetText();
+            _context.Attribute.Value = context.GetText();
             base.EnterAttribValue(context);
         }
 
         public override void EnterClassNameValue([NotNull] XCSSParser.ClassNameValueContext context)
         {
-            _currentElement.ClassNames.Add(context.GetText());
+            _context.Element.ClassNames.Add(context.GetText());
             base.EnterClassNameValue(context);
         }
 
         public override void EnterPseudo([NotNull] XCSSParser.PseudoContext context)
         {
-            _currentElement.Conditions.Add(context.GetText());
+            _context.Element.Conditions.Add(context.GetText());
             base.EnterPseudo(context);
         }
 

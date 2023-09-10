@@ -181,6 +181,16 @@ public interface IXCSSParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitCondition([NotNull] XCSSParser.ConditionContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="XCSSParser.subelementSelector"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterSubelementSelector([NotNull] XCSSParser.SubelementSelectorContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="XCSSParser.subelementSelector"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitSubelementSelector([NotNull] XCSSParser.SubelementSelectorContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="XCSSParser.text"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

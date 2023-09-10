@@ -8,12 +8,12 @@
         public bool isValidXpath;
         public String Tag;
         public String Id;
-        public String Condition;
         public List<string> ClassNames = new List<string>();
-        public List<XcssTextCondition> TextConditions = new List<XcssTextCondition>();
         public List<XcssAttribute> Attributes = new List<XcssAttribute>();
+        public List<XcssTextCondition> TextConditions = new List<XcssTextCondition>();
+        public List<XcssSelector> SubelementConditions = new List<XcssSelector>();
+        public List<string> SubelementXPathConditions = new List<string>();
         public List<string> Conditions = new List<string>();
-        public List<string> SubelementXpaths = new List<string>();
     }
 
     internal class XcssSelector

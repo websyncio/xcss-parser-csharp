@@ -58,7 +58,7 @@ namespace XcssBuilderTests
     [TestFixture]
     public class XcssBuilderTests
     {
-        [TestCase("div[~'text']", "//div[contains(text(),'text')]")]
+        //[TestCase("div[~'text']", "//div[contains(text(),'text')]")]
         //[TestCase("div['text']", "//div[text()='text']")]
         //[TestCase("div[src='1.png']['text']", "//div[@src='1.png'][text()='text']")]
         //[TestCase("div[src=\"1.png\"]['text']", "//div[@src=\"1.png\"][text()='text']")]
@@ -82,7 +82,7 @@ namespace XcssBuilderTests
         //[TestCase("div#main-basket-info-div>ul>li['Тариф']>a",
         //    "//div[@id='main-basket-info-div']/ul/li[text()='Тариф']/a")]
         //[TestCase("li[>h5>strong>a['mytext']]", "//li[h5/strong/a[text()='mytext']]")]
-        //[TestCase("li[>a]", "//li[a]")]
+        [TestCase("li[>a]", "//li[a]")]
         //[TestCase("li[>a[div]]", "//li[a[descendant::div]]")]
         //[TestCase("tr[1]>td[last()]", "//tr[1]/td[last()]")]
         //[TestCase("img[src~'111.png']", "//img[contains(@src,'111.png')]")]

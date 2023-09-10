@@ -216,6 +216,18 @@ public partial class XCSSParserBaseListener : IXCSSParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitCondition([NotNull] XCSSParser.ConditionContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="XCSSParser.subelementSelector"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterSubelementSelector([NotNull] XCSSParser.SubelementSelectorContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="XCSSParser.subelementSelector"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitSubelementSelector([NotNull] XCSSParser.SubelementSelectorContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="XCSSParser.text"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

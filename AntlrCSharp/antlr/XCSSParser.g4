@@ -81,7 +81,10 @@ className: '.' classNameValue;
 
 classNameValue: ident;
 
-condition: '[' (attrib | text) ']';
+condition:
+	'[' (attrib | text | combinator? subelementSelector) ']';
+
+subelementSelector: selector;
 
 text: textMatchStyle? textValue;
 
