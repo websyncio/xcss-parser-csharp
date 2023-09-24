@@ -98,11 +98,11 @@ subelementSelector: selector;
 
 text: textMatchStyle? textValue;
 
-textValue: '"' ~('"')* '"' | '\'' ~('\'')* '\'';
+textValue: String_;
 
 textMatchStyle: '~';
 
-attrib: ws attribName? ws (attribMatchStyle ws attribValue ws)?;
+attrib: ws attribName ws (attribMatchStyle ws attribValue ws)?;
 
 attribName: typeNamespacePrefix? ident;
 
