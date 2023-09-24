@@ -208,7 +208,7 @@
         {
             if (textCondition.MatchStyle == AttributeMatchStyle.Contains)
             {
-                return $"[text()[contains(normalize-space(.), \"{textCondition.Value}\")]]";
+                return $"[text()[contains(normalize-space(.),{textCondition.Value})]]";
             }
 
             return $"[text()[normalize-space(.)={textCondition.Value}]]";
