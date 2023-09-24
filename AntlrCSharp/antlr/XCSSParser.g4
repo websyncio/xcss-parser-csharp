@@ -47,7 +47,7 @@ parse: selectorGroup EOF;
 selectorGroup: selector ( Comma ws selector)*;
 
 selector:
-	simpleSelectorSequence ws (
+	combinator? simpleSelectorSequence ws (
 		combinator simpleSelectorSequence ws
 	)*;
 
