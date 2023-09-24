@@ -92,7 +92,7 @@ namespace XcssBuilderTests
         //[TestCase("tr[span.ng-binding[descendant-or-self::*['{0}']]]", "//tr[descendant::span[contains(@class,'ng-binding')][descendant-or-self::*[normalize-space(text())='{0}'])]]")]
         [TestCase("button[.km-icon.km-email-attachments]+ul", "//button[descendant::*[contains(@class,'km-icon')][contains(@class,'km-email-attachments')]]/following-sibling::ul")]
         [TestCase("[data-toggle='collapse'][1]", "//*[@data-toggle='collapse'][1]")]
-        [TestCase("input[translate(@type, 'B', 'b')='button']", "input[translate(@type, 'B', 'b')='button']")]
+        [TestCase("input[translate(@type, 'B', 'b')='button']", "//input[translate(@type, 'B', 'b')='button']")]
         [TestCase("div>span[not(a)]", "//div/span[not(a)]")]
         [TestCase("div>span[position() mod 2 = 1 and position() > 1]", "//div/span[position() mod 2 = 1 and position() > 1]")]
         public void ConvertScssOnlyToXpath(string scssSelector, string result)
