@@ -156,6 +156,7 @@ namespace AntlrCSharp.builder
                     break;
                 case "*=":
                 case "~=":
+                case "~":
                     _context.Attribute.MatchStyle = AttributeMatchStyle.Contains;
                     break;
                 case "=":

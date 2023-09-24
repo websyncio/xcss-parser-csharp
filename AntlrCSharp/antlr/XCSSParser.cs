@@ -1555,7 +1555,7 @@ public partial class XCSSParser : Parser {
 			State = 207;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << Equal) | (1L << Includes) | (1L << DashMatch) | (1L << PrefixMatch) | (1L << SuffixMatch) | (1L << SubstringMatch))) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << Equal) | (1L << Includes) | (1L << DashMatch) | (1L << Tilde) | (1L << PrefixMatch) | (1L << SuffixMatch) | (1L << SubstringMatch))) != 0)) {
 				{
 				State = 202;
 				attribMatchStyle();
@@ -1642,6 +1642,7 @@ public partial class XCSSParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SuffixMatch() { return GetToken(XCSSParser.SuffixMatch, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SubstringMatch() { return GetToken(XCSSParser.SubstringMatch, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode Equal() { return GetToken(XCSSParser.Equal, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode Tilde() { return GetToken(XCSSParser.Tilde, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode Includes() { return GetToken(XCSSParser.Includes, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DashMatch() { return GetToken(XCSSParser.DashMatch, 0); }
 		public AttribMatchStyleContext(ParserRuleContext parent, int invokingState)
@@ -1671,7 +1672,7 @@ public partial class XCSSParser : Parser {
 			{
 			State = 214;
 			_la = TokenStream.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << Equal) | (1L << Includes) | (1L << DashMatch) | (1L << PrefixMatch) | (1L << SuffixMatch) | (1L << SubstringMatch))) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << Equal) | (1L << Includes) | (1L << DashMatch) | (1L << Tilde) | (1L << PrefixMatch) | (1L << SuffixMatch) | (1L << SubstringMatch))) != 0)) ) {
 			ErrorHandler.RecoverInline(this);
 			}
 			else {
@@ -2383,19 +2384,19 @@ public partial class XCSSParser : Parser {
 		'\x6', '\b', '\n', '\f', '\xE', '\x10', '\x12', '\x14', '\x16', '\x18', 
 		'\x1A', '\x1C', '\x1E', ' ', '\"', '$', '&', '(', '*', ',', '.', '\x30', 
 		'\x32', '\x34', '\x36', '\x38', ':', '<', '>', '@', '\x2', '\a', '\x3', 
-		'\x2', '\x3', '\x3', '\x3', '\x2', '\x4', '\x4', '\x5', '\x2', '\n', '\n', 
-		'\x18', '\x19', '\x32', '\x34', '\x6', '\x2', '$', '&', '\x37', '\x37', 
-		'\x39', ':', '\x43', '\x43', '\x4', '\x2', '\x13', '\x13', '\x15', '\x15', 
-		'\x2', '\x120', '\x2', '\x42', '\x3', '\x2', '\x2', '\x2', '\x4', '\x45', 
-		'\x3', '\x2', '\x2', '\x2', '\x6', 'P', '\x3', '\x2', '\x2', '\x2', '\b', 
-		'\x65', '\x3', '\x2', '\x2', '\x2', '\n', '{', '\x3', '\x2', '\x2', '\x2', 
-		'\f', '}', '\x3', '\x2', '\x2', '\x2', '\xE', '\x80', '\x3', '\x2', '\x2', 
-		'\x2', '\x10', '\x84', '\x3', '\x2', '\x2', '\x2', '\x12', '\x87', '\x3', 
-		'\x2', '\x2', '\x2', '\x14', '\x8D', '\x3', '\x2', '\x2', '\x2', '\x16', 
-		'\x91', '\x3', '\x2', '\x2', '\x2', '\x18', '\x94', '\x3', '\x2', '\x2', 
-		'\x2', '\x1A', '\x98', '\x3', '\x2', '\x2', '\x2', '\x1C', '\x9B', '\x3', 
-		'\x2', '\x2', '\x2', '\x1E', '\x9D', '\x3', '\x2', '\x2', '\x2', ' ', 
-		'\xAD', '\x3', '\x2', '\x2', '\x2', '\"', '\xBC', '\x3', '\x2', '\x2', 
+		'\x2', '\x3', '\x3', '\x3', '\x2', '\x4', '\x4', '\x6', '\x2', '\n', '\n', 
+		'\x18', '\x19', '-', '-', '\x32', '\x34', '\x6', '\x2', '$', '&', '\x37', 
+		'\x37', '\x39', ':', '\x43', '\x43', '\x4', '\x2', '\x13', '\x13', '\x15', 
+		'\x15', '\x2', '\x120', '\x2', '\x42', '\x3', '\x2', '\x2', '\x2', '\x4', 
+		'\x45', '\x3', '\x2', '\x2', '\x2', '\x6', 'P', '\x3', '\x2', '\x2', '\x2', 
+		'\b', '\x65', '\x3', '\x2', '\x2', '\x2', '\n', '{', '\x3', '\x2', '\x2', 
+		'\x2', '\f', '}', '\x3', '\x2', '\x2', '\x2', '\xE', '\x80', '\x3', '\x2', 
+		'\x2', '\x2', '\x10', '\x84', '\x3', '\x2', '\x2', '\x2', '\x12', '\x87', 
+		'\x3', '\x2', '\x2', '\x2', '\x14', '\x8D', '\x3', '\x2', '\x2', '\x2', 
+		'\x16', '\x91', '\x3', '\x2', '\x2', '\x2', '\x18', '\x94', '\x3', '\x2', 
+		'\x2', '\x2', '\x1A', '\x98', '\x3', '\x2', '\x2', '\x2', '\x1C', '\x9B', 
+		'\x3', '\x2', '\x2', '\x2', '\x1E', '\x9D', '\x3', '\x2', '\x2', '\x2', 
+		' ', '\xAD', '\x3', '\x2', '\x2', '\x2', '\"', '\xBC', '\x3', '\x2', '\x2', 
 		'\x2', '$', '\xBE', '\x3', '\x2', '\x2', '\x2', '&', '\xC1', '\x3', '\x2', 
 		'\x2', '\x2', '(', '\xC5', '\x3', '\x2', '\x2', '\x2', '*', '\xC7', '\x3', 
 		'\x2', '\x2', '\x2', ',', '\xC9', '\x3', '\x2', '\x2', '\x2', '.', '\xD4', 

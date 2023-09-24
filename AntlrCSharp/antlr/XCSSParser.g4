@@ -111,6 +111,7 @@ attribMatchStyle:
 	| SuffixMatch
 	| SubstringMatch
 	| '='
+	| '~'
 	| Includes
 	| DashMatch;
 
