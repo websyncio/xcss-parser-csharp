@@ -58,43 +58,43 @@ namespace XcssBuilderTests
     [TestFixture]
     public class XcssBuilderTests
     {
-        //[TestCase("div[~'text']", "//div[text()[contains(normalize-space(.),'text')]]")]
-        //[TestCase("div['text']", "//div[text()[normalize-space(.)='text']]")]
-        //[TestCase("div[src='1.png']['text']", "//div[@src='1.png'][text()[normalize-space(.)='text']]")]
-        //[TestCase("div[src=\"1.png\"]['text']", "//div[@src=\"1.png\"][text()[normalize-space(.)='text']]")]
-        //[TestCase(".classname#myid['text']", "//*[@id='myid'][contains(@class,'classname')][text()[normalize-space(.)='text']]")]
-        //[TestCase(".classname['mytext']", "//*[contains(@class,'classname')][text()[normalize-space(.)='mytext']]")]
-        //[TestCase("div.classname['mytext']", "//div[contains(@class,'classname')][text()[normalize-space(.)='mytext']]")]
-        //[TestCase(".classname1.classname2['mytext']",
-        //     "//*[contains(@class,'classname1')][contains(@class,'classname2')][text()[normalize-space(.)='mytext']]")]
-        //[TestCase("div.classname1.classname2['mytext']",
-        //     "//div[contains(@class,'classname1')][contains(@class,'classname2')][text()[normalize-space(.)='mytext']]")]
-        //[TestCase(".classname1['mytext'] .classname2['mytext']",
-        //     "//*[contains(@class,'classname1')][text()[normalize-space(.)='mytext']]/descendant::*[contains(@class,'classname2')][text()[normalize-space(.)='mytext']]"
-        // )]
-        //[TestCase("div.classname1['mytext'] div.classname2['mytext']",
-        //     "//div[contains(@class,'classname1')][text()[normalize-space(.)='mytext']]/descendant::div[contains(@class,'classname2')][text()[normalize-space(.)='mytext']]"
-        // )]
-        //[TestCase("#myid div['mytext']", "//*[@id='myid']/descendant::div[text()[normalize-space(.)='mytext']]")]
-        //[TestCase("div#myid div['mytext']", "//div[@id='myid']/descendant::div[text()[normalize-space(.)='mytext']]")]
-        //[TestCase("div#myid.classname div['mytext']",
-        //     "//div[@id='myid'][contains(@class,'classname')]/descendant::div[text()[normalize-space(.)='mytext']]")]
-        //[TestCase("div#main-basket-info-div>ul>li['Тариф']>a", "//div[@id='main-basket-info-div']/ul/li[text()[normalize-space(.)='Тариф']]/a")]
-        //[TestCase("li[>h5>strong>a['mytext']]", "//li[h5/strong/a[text()[normalize-space(.)='mytext']]]")]
-        //[TestCase("li[>a]", "//li[a]")]
-        //[TestCase("li[>a[div]]", "//li[a[descendant::div]]")]
-        //[TestCase("tr[1]>td[last()]", "//tr[1]/td[last()]")]
-        //[TestCase("img[src~'111.png']", "//img[contains(@src,'111.png')]")]
-        //[TestCase("#showThemesPanel,.genre-filter['text']", "//*[@id='showThemesPanel']|//*[contains(@class,'genre-filter')][text()[normalize-space(.)='text']]")]
-        //[TestCase(">div.toggle-drop>ul>li>span['Вечером']", "//child::div[contains(@class,'toggle-drop')]/ul/li/span[text()[normalize-space(.)='Вечером']]")]
-        //[TestCase("li[10]>div.news-block", "//li[10]/div[contains(@class,'news-block')]")]
-        //[TestCase("td[h3>span['Категории, на которые вы уже подписаны']]>div>div", "//td[descendant::h3/span[text()[normalize-space(.)='Категории, на которые вы уже подписаны']]]/div/div")]
+        [TestCase("div[~'text']", "//div[text()[contains(normalize-space(.),'text')]]")]
+        [TestCase("div['text']", "//div[text()[normalize-space(.)='text']]")]
+        [TestCase("div[src='1.png']['text']", "//div[@src='1.png'][text()[normalize-space(.)='text']]")]
+        [TestCase("div[src=\"1.png\"]['text']", "//div[@src=\"1.png\"][text()[normalize-space(.)='text']]")]
+        [TestCase(".classname#myid['text']", "//*[@id='myid'][contains(@class,'classname')][text()[normalize-space(.)='text']]")]
+        [TestCase(".classname['mytext']", "//*[contains(@class,'classname')][text()[normalize-space(.)='mytext']]")]
+        [TestCase("div.classname['mytext']", "//div[contains(@class,'classname')][text()[normalize-space(.)='mytext']]")]
+        [TestCase(".classname1.classname2['mytext']",
+             "//*[contains(@class,'classname1')][contains(@class,'classname2')][text()[normalize-space(.)='mytext']]")]
+        [TestCase("div.classname1.classname2['mytext']",
+             "//div[contains(@class,'classname1')][contains(@class,'classname2')][text()[normalize-space(.)='mytext']]")]
+        [TestCase(".classname1['mytext'] .classname2['mytext']",
+             "//*[contains(@class,'classname1')][text()[normalize-space(.)='mytext']]/descendant::*[contains(@class,'classname2')][text()[normalize-space(.)='mytext']]"
+         )]
+        [TestCase("div.classname1['mytext'] div.classname2['mytext']",
+             "//div[contains(@class,'classname1')][text()[normalize-space(.)='mytext']]/descendant::div[contains(@class,'classname2')][text()[normalize-space(.)='mytext']]"
+         )]
+        [TestCase("#myid div['mytext']", "//*[@id='myid']/descendant::div[text()[normalize-space(.)='mytext']]")]
+        [TestCase("div#myid div['mytext']", "//div[@id='myid']/descendant::div[text()[normalize-space(.)='mytext']]")]
+        [TestCase("div#myid.classname div['mytext']",
+             "//div[@id='myid'][contains(@class,'classname')]/descendant::div[text()[normalize-space(.)='mytext']]")]
+        [TestCase("div#main-basket-info-div>ul>li['Тариф']>a", "//div[@id='main-basket-info-div']/ul/li[text()[normalize-space(.)='Тариф']]/a")]
+        [TestCase("li[>h5>strong>a['mytext']]", "//li[h5/strong/a[text()[normalize-space(.)='mytext']]]")]
+        [TestCase("li[>a]", "//li[a]")]
+        [TestCase("li[>a[div]]", "//li[a[descendant::div]]")]
+        [TestCase("tr[1]>td[last()]", "//tr[1]/td[last()]")]
+        [TestCase("img[src~'111.png']", "//img[contains(@src,'111.png')]")]
+        [TestCase("#showThemesPanel,.genre-filter['text']", "//*[@id='showThemesPanel']|//*[contains(@class,'genre-filter')][text()[normalize-space(.)='text']]")]
+        [TestCase(">div.toggle-drop>ul>li>span['Вечером']", "//child::div[contains(@class,'toggle-drop')]/ul/li/span[text()[normalize-space(.)='Вечером']]")]
+        [TestCase("li[10]>div.news-block", "//li[10]/div[contains(@class,'news-block')]")]
+        [TestCase("td[h3>span['Категории, на которые вы уже подписаны']]>div>div", "//td[descendant::h3/span[text()[normalize-space(.)='Категории, на которые вы уже подписаны']]]/div/div")]
         [TestCase("tr[span.ng-binding[descendant-or-self::*['{0}']]]", "tr[descendant::span[contains(@class,'ng-binding')][descendant-or-self::*[normalize-space(text())='{0}'])]]")]
-        //[TestCase("button[.km-icon.km-email-attachments]+ul", "//button[descendant::*[contains(@class,'km-icon')][contains(@class,'km-email-attachments')]]/following-sibling::ul")]
-        //[TestCase("[data-toggle='collapse'][1]", "//*[@data-toggle='collapse'][1]")]
-        //[TestCase("input[translate(@type, 'B', 'b')='button']", "input[translate(@type, 'B', 'b')='button']")]
-        //[TestCase("div>span[not(a)]", "//div/span[not(a)]")]
-        //[TestCase("div>span[position() mod 2 = 1 and position() > 1]", "//div/span[position() mod 2 = 1 and position() > 1]")]
+        [TestCase("button[.km-icon.km-email-attachments]+ul", "//button[descendant::*[contains(@class,'km-icon')][contains(@class,'km-email-attachments')]]/following-sibling::ul")]
+        [TestCase("[data-toggle='collapse'][1]", "//*[@data-toggle='collapse'][1]")]
+        [TestCase("input[translate(@type, 'B', 'b')='button']", "input[translate(@type, 'B', 'b')='button']")]
+        [TestCase("div>span[not(a)]", "//div/span[not(a)]")]
+        [TestCase("div>span[position() mod 2 = 1 and position() > 1]", "//div/span[position() mod 2 = 1 and position() > 1]")]
         public void ConvertScssOnlyToXpath(string scssSelector, string result)
         {
             // .Arrange

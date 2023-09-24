@@ -22,14 +22,9 @@
 
         public const string FOLLOWING_AXIS = "following::";
 
-        public const string FOLLOWINGSIBLING_AXIS = "following-sibling::";
+        private const string FOLLOWING_SIBLING_AXIS = "following-sibling::";
 
         public const string NAMESPACE_AXIS = "namespace::";
-
-        internal static string BuildFromParts(List<XcssSelector> parts)
-        {
-            throw new NotImplementedException();
-        }
 
         public const string PARENT_AXIS = "parent::";
 
@@ -83,7 +78,7 @@
                                  DESCENDANT_AXIS,
                                  DESCENDANTORSELF_AXIS,
                                  FOLLOWING_AXIS,
-                                 FOLLOWINGSIBLING_AXIS,
+                                 FOLLOWING_SIBLING_AXIS,
                                  NAMESPACE_AXIS,
                                  PARENT_AXIS,
                                  PRECEDING_AXIS,
@@ -104,6 +99,115 @@
                 return false;
             }
             return true;
+        }
+
+        internal static string Build(XcssElement selector)
+        {
+            var tag = string.IsNullOrEmpty(selector.Tag) ? "*" : selector.Tag;
+            var xpath = XpathAxis(selector.Combinator) + tag;
+            if (!string.IsNullOrEmpty(selector.Id))
+            {
+                xpath += XpathAttributeCondition("id", string.Format("'{0}'", selector.Id));
+            }
+            foreach (var className in selector.ClassNames)
+            {
+                xpath += XpathAttributeCondition("class", string.Format("'{0}'", className),
+                    AttributeMatchStyle.Contains);
+            }
+            foreach (var attribute in selector.Attributes)
+            {
+                xpath += XpathAttributeCondition(attribute.Name, attribute.Value, attribute.MatchStyle);
+            }
+            foreach (var condition in selector.TextConditions)
+            {
+                xpath += XpathTextCondition(condition);
+            }
+            foreach (var subelementCondition in selector.SubelementConditions)
+            {
+                xpath += XpathCondition(Build(subelementCondition));
+            }
+            foreach (var subelementXpath in selector.SubelementXPathConditions)
+            {
+                xpath += XpathCondition(subelementXpath);
+            }
+            return xpath;
+        }
+
+        internal static string Build(XcssSelector selector) {
+            var xpath = string.Empty;
+            for (var i = 0; i < selector.Elements.Count; i++)
+            {
+                var elementXpath = Build(selector.Elements[i]);
+                if (i > 0)
+                {
+                    elementXpath = "/" + RemoveChildAxis(elementXpath);
+                }
+                xpath += elementXpath;
+            }
+            return xpath;
+        }
+
+        private static string RemoveChildAxis(string elementXpath)
+        {
+            if (elementXpath.StartsWith(CHILD_AXIS))
+                elementXpath = elementXpath.Remove(0, CHILD_AXIS.Length);
+            return elementXpath;
+        }
+
+        internal static string Build(List<XcssSelector> selectors)
+        {
+            var selectorXpaths = selectors.Select(s => "//" + RemoveDescendantAxis(Build(s)));
+            return string.Join('|', selectorXpaths);
+        }
+
+        private static string RemoveDescendantAxis(string elementXpath)
+        {
+            if (elementXpath.StartsWith(DESCENDANT_AXIS))
+                elementXpath = elementXpath.Remove(0, DESCENDANT_AXIS.Length);
+            return elementXpath;
+        }
+
+        private static string XpathCondition(string condition) => $"[{condition}]";
+
+        private static string XpathAxis(string axis)
+        {
+            switch (axis)
+            {
+                case null:
+                case "":
+                case " ":
+                    return DESCENDANT_AXIS;
+                case ">":
+                    return CHILD_AXIS;
+                case "+":
+                case "~":
+                    return FOLLOWING_SIBLING_AXIS;
+                default:
+                    throw new ArgumentOutOfRangeException("axis");
+            }
+        }
+
+        private static string XpathAttributeCondition(string name, string value, AttributeMatchStyle style = AttributeMatchStyle.Equal)
+        {
+            switch (style)
+            {
+                case AttributeMatchStyle.Equal:
+                    return string.Format("[@{0}={1}]", name, value);
+                case AttributeMatchStyle.Contains:
+                    return string.Format("[contains(@{0},{1})]", name, value);
+                default:
+                    throw new ArgumentOutOfRangeException("style");
+            }
+        }
+
+        private static string XpathTextCondition(XcssTextCondition textCondition)
+        {
+            if (textCondition.MatchStyle == AttributeMatchStyle.Contains)
+            {
+                return $"[text()[contains(normalize-space(.), \"{textCondition.Value}\")]]";
+            }
+
+            return $"[text()[normalize-space(.)={textCondition.Value}]]";
         }
     }
 

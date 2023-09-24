@@ -15,10 +15,10 @@ namespace AntlrCSharp.builder
             var listener = new CollectXcssPartsListener();
             ParseTreeWalker walker = new ParseTreeWalker();
             walker.Walk(listener, xcssParser.parse());
-            string css = CssBuilder.BuildFromParts(listener.Selectors);
-            string xpath = XPathBuilder.BuildFromParts(listener.Selectors);
+            //string css = CssBuilder.BuildFromParts(listener.Selectors);
+            string xpath = XPathBuilder.Build(listener.Selectors);
 
-            return new Xcss(css, xpath);
+            return new Xcss(xpath, null);
         }
 
         internal static Xcss Concat(string scssSelector1, string scssSelector2)
