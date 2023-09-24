@@ -85,7 +85,7 @@ condition:
 	'[' (
 		attrib
 		| text
-		| combinator? subelementSelector
+		| subelementSelector
 		| elementIndex
 		| xpathCondition
 	) ']';

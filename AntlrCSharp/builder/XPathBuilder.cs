@@ -124,7 +124,7 @@
             }
             foreach (var subelementCondition in selector.SubelementConditions)
             {
-                xpath += XpathCondition(Build(subelementCondition));
+                xpath += XpathCondition(RemoveChildAxis(Build(subelementCondition)));
             }
             foreach (var subelementXpath in selector.SubelementXPathConditions)
             {
@@ -193,6 +193,9 @@
 
         private static string XpathAttributeCondition(string name, string value, AttributeMatchStyle style = AttributeMatchStyle.Equal)
         {
+            if (value==null){
+                return $"[@{name}]";
+            }
             switch (style)
             {
                 case AttributeMatchStyle.Equal:

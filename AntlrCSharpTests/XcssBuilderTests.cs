@@ -82,7 +82,7 @@ namespace XcssBuilderTests
         [TestCase("div#main-basket-info-div>ul>li['Тариф']>a", "//div[@id='main-basket-info-div']/ul/li[text()[normalize-space(.)='Тариф']]/a")]
         [TestCase("li[>h5>strong>a['mytext']]", "//li[h5/strong/a[text()[normalize-space(.)='mytext']]]")]
         [TestCase("li[>a]", "//li[a]")]
-        [TestCase("li[>a[div]]", "//li[a[descendant::div]]")]
+        [TestCase("li[>a[disabled]]", "//li[a[@disabled]]")]
         [TestCase("tr[1]>td[last()]", "//tr[1]/td[last()]")]
         [TestCase("img[src~'111.png']", "//img[contains(@src,'111.png')]")]
         [TestCase("#showThemesPanel,.genre-filter['text']", "//*[@id='showThemesPanel']|//*[contains(@class,'genre-filter')][text()[normalize-space(.)='text']]")]
