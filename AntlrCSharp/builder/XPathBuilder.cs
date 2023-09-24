@@ -130,6 +130,10 @@
             {
                 xpath += XpathCondition(subelementXpath);
             }
+            if (selector.Index.HasValue)
+            {
+                xpath += XpathCondition(selector.Index.ToString());
+            }
             return xpath;
         }
 
