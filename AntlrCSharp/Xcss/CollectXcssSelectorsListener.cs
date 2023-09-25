@@ -27,7 +27,7 @@ namespace AntlrCSharp.builder
 
     }
 
-    internal class CollectXcssPartsListener : XCSSParserBaseListener
+    internal class CollectXcssSelectorsListener : XCSSParserBaseListener
     {
         private Stack<XcssSelectorContext> _parentContexts = new Stack<XcssSelectorContext>();
         private XcssSelectorContext _context = new XcssSelectorContext();

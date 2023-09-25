@@ -95,14 +95,17 @@ namespace XcssBuilderTests
         [TestCase("input[translate(@type, 'B', 'b')='button']", "//input[translate(@type, 'B', 'b')='button']")]
         [TestCase("div>span[not(a)]", "//div/span[not(a)]")]
         [TestCase("div>span[position() mod 2 = 1 and position() > 1]", "//div/span[position() mod 2 = 1 and position() > 1]")]
-        public void ConvertScssOnlyToXpath(string scssSelector, string result)
+        public void ConvertScssOnlyToXpath(string xcssSelector, string result)
         {
             // .Arrange
             // .Act
-            var scss = XcssBuilder.Build(scssSelector);
+            var xcss = XCSS.ParseSelector(xcssSelector);
+            XCSS.FromXPath(xcssSelector, true);
+            XCSS.FromCss(xcssSelector, false);
+
             // .Assert
-            Assert.AreEqual(result, scss.Xpath);
-            Assert.IsNull(scss.Css);
+            Assert.AreEqual(result, xcss.XPath);
+            Assert.IsNull(xcss.CssSelector);
         }
 
         [TestCase("span[data-bind='text: Title']", "//span[@data-bind='text: Title']")]
@@ -115,7 +118,7 @@ namespace XcssBuilderTests
             // .Act
             var scss = XcssBuilder.Build(scssSelector);
             // .Assert
-            Assert.AreEqual(result, scss.Xpath);
+            Assert.AreEqual(result, scss.XPath);
             Assert.IsNotNull(scss.Css);
         }
 
@@ -137,7 +140,7 @@ namespace XcssBuilderTests
         {
             var scss = XcssBuilder.Build(scssSelector);
             Assert.AreEqual(result, scss.Css);
-            Assert.IsEmpty(scss.Xpath);
+            Assert.IsEmpty(scss.XPath);
         }
     }
 
