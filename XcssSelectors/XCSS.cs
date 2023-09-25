@@ -5,25 +5,27 @@ namespace XcssSelectors
 {
     public class XCSS
     {
-        public readonly string XcssSelector;
-        public readonly string CssSelector;
-        public readonly string XPath;
+        public readonly string Xcss;
+        public readonly string Css;
+        public readonly string Xpath;
+        public readonly bool CombineWithRoot;
 
-        public XCSS(string cssSelector, string xpath)
+        public XCSS(string css, string xpath, bool combineWithRoot=false)
         {
-            XcssSelector = string.IsNullOrWhiteSpace(cssSelector) ? xpath : cssSelector;
-            CssSelector = cssSelector;
-            XPath = xpath;
+            Xcss = string.IsNullOrWhiteSpace(css) ? xpath : css;
+            Css = css;
+            Xpath = xpath;
+            CombineWithRoot = combineWithRoot;
         }
 
         public XCSS(string xcssSelector, string cssSelector, string xpath)
         {
-            XcssSelector = xcssSelector;
-            CssSelector = cssSelector;
-            XPath = xpath;
+            Xcss = xcssSelector;
+            Css = cssSelector;
+            Xpath = xpath;
         }
 
-        public static XCSS ParseSelector(string xcssSelector)
+        public static XCSS FromXcss(string xcssSelector)
         {
             var selectors = XcssParser.Parse(xcssSelector);
             //string css = CssBuilder.BuildFromParts(selectors);
@@ -34,10 +36,10 @@ namespace XcssSelectors
 
         public XCSS Concat(XCSS xcss2)
         {
-            string resultXpath = XPathBuilder.Concat(XPath, xcss2.XPath);
-            var resultCss = string.IsNullOrEmpty(CssSelector) || string.IsNullOrEmpty(xcss2.CssSelector)
+            string resultXpath = XPathBuilder.Concat(Xpath, xcss2.Xpath);
+            var resultCss = string.IsNullOrEmpty(Css) || string.IsNullOrEmpty(xcss2.Css)
                                 ? string.Empty
-                                : CssBuilder.Concat(CssSelector, xcss2.CssSelector);
+                                : CssBuilder.Concat(Css, xcss2.Css);
             return new XCSS(resultXpath, resultCss);
         }
 

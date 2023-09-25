@@ -99,11 +99,11 @@ namespace XcssSelectorsTests
         {
             // .Arrange
             // .Act
-            var xcss = XCSS.ParseSelector(xcssSelector);
+            var xcss = XCSS.FromXcss(xcssSelector);
 
             // .Assert
-            Assert.AreEqual(result, xcss.XPath);
-            Assert.IsNull(xcss.CssSelector);
+            Assert.AreEqual(result, xcss.Xpath);
+            Assert.IsNull(xcss.Css);
         }
 
         [TestCase("span[data-bind='text: Title']", "//span[@data-bind='text: Title']")]
@@ -114,11 +114,11 @@ namespace XcssSelectorsTests
         {
             // .Arrange
             // .Act
-            var xcss = XCSS.ParseSelector(scssSelector);
+            var xcss = XCSS.FromXcss(scssSelector);
 
             // .Assert
-            Assert.AreEqual(result, xcss.XPath);
-            Assert.IsNotNull(xcss.CssSelector);
+            Assert.AreEqual(result, xcss.Xpath);
+            Assert.IsNotNull(xcss.Css);
         }
 
         [TestCase("#myid", "#myid")]
@@ -137,9 +137,9 @@ namespace XcssSelectorsTests
         [TestCase(".nav-section >.search-bar ul", ".nav-section >.search-bar ul")]
         public void ConvertXcssToCss(string scssSelector, string result)
         {
-            var xcss = XCSS.ParseSelector(scssSelector);
-            Assert.AreEqual(result, xcss.CssSelector);
-            Assert.IsEmpty(xcss.XPath);
+            var xcss = XCSS.FromXcss(scssSelector);
+            Assert.AreEqual(result, xcss.Css);
+            Assert.IsEmpty(xcss.Xpath);
         }
     }
 }
