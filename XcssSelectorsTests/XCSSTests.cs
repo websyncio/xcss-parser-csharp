@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
-using AntlrCSharp.builder;
+using XcssSelectors;
 
-namespace XcssBuilderTests
+namespace XcssSelectorsTests
 {
     //[TestClass]
     //public class ParserTest
@@ -36,7 +36,7 @@ namespace XcssBuilderTests
     //        SpeakParser.LineContext context = parser.line();
     //        BasicSpeakVisitor visitor = new BasicSpeakVisitor();
     //        SpeakLine line = (SpeakLine) visitor.VisitLine(context);     
-            
+
     //        Assert.AreEqual("john", line.Person);
     //        Assert.AreEqual("hello", line.Text);
     //    }
@@ -47,7 +47,7 @@ namespace XcssBuilderTests
     //        SpeakParser parser = Setup("john sayan \"hello\" \n");
 
     //        var context = parser.line();
-            
+
     //        Assert.IsInstanceOfType(context, typeof(SpeakParser.LineContext));            
     //        Assert.AreEqual("john", context.name().GetText());
     //        Assert.IsNull(context.SAYS());
@@ -56,7 +56,7 @@ namespace XcssBuilderTests
     //}
 
     [TestFixture]
-    public class XcssBuilderTests
+    public class XCSSTests
     {
         [TestCase("div[~'text']", "//div[text()[contains(normalize-space(.),'text')]]")]
         [TestCase("div['text']", "//div[text()[normalize-space(.)='text']]")]
@@ -114,10 +114,11 @@ namespace XcssBuilderTests
         {
             // .Arrange
             // .Act
-            var scss = XcssBuilder.Build(scssSelector);
+            var xcss = XCSS.ParseSelector(scssSelector);
+
             // .Assert
-            Assert.AreEqual(result, scss.XPath);
-            Assert.IsNotNull(scss.Css);
+            Assert.AreEqual(result, xcss.XPath);
+            Assert.IsNotNull(xcss.CssSelector);
         }
 
         [TestCase("#myid", "#myid")]
@@ -136,10 +137,9 @@ namespace XcssBuilderTests
         [TestCase(".nav-section >.search-bar ul", ".nav-section >.search-bar ul")]
         public void ConvertXcssToCss(string scssSelector, string result)
         {
-            var scss = XcssBuilder.Build(scssSelector);
-            Assert.AreEqual(result, scss.Css);
-            Assert.IsEmpty(scss.XPath);
+            var xcss = XCSS.ParseSelector(scssSelector);
+            Assert.AreEqual(result, xcss.CssSelector);
+            Assert.IsEmpty(xcss.XPath);
         }
     }
-
 }
