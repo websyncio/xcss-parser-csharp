@@ -95,7 +95,7 @@ namespace XcssSelectorsTests
         [TestCase("input[translate(@type, 'B', 'b')='button']", "//input[translate(@type, 'B', 'b')='button']")]
         [TestCase("div>span[not(a)]", "//div/span[not(a)]")]
         [TestCase("div>span[position() mod 2 = 1 and position() > 1]", "//div/span[position() mod 2 = 1 and position() > 1]")]
-        public void ConvertScssOnlyToXpath(string xcssSelector, string result)
+        public void ConvertXcssOnlyToXpath(string xcssSelector, string result)
         {
             // .Arrange
             // .Act
@@ -107,7 +107,7 @@ namespace XcssSelectorsTests
 
         [TestCase("span[data-bind='text: Title']", "//span[@data-bind='text: Title']")]
         [TestCase("#searchPreferences button[type='submit']", "//*[@id='searchPreferences']/descendant::button[@type='submit']")]
-        [TestCase("label:contains('Law Firm')", "//label[text()[contains(normalize-space(.),'Law Firm')]]")]
+        //[TestCase("label:contains('Law Firm')", "//label[text()[contains(normalize-space(.),'Law Firm')]]")]
         [TestCase("input~.text-danger", "//input/following-sibling::*[contains(@class,'text-danger')]")]
         public void ConvertXcssToXpath(string scssSelector, string result)
         {

@@ -166,8 +166,7 @@
 
         internal static string Combine(IEnumerable<string> xpaths)
         {
-            var selectorXpaths = xpaths.Select(s => "//" + RemoveDescendantAxis(s));
-            return string.Join('|', selectorXpaths);
+            return string.Join('|', xpaths);
         }
 
         private static string RemoveDescendantAxis(string elementXpath)
