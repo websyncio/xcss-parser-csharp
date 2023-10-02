@@ -1,6 +1,6 @@
 ﻿namespace XcssSelectors.Models
 {
-    internal class XcssAttribute
+    internal class XcssAttributeData
     {
         public AttributeMatchStyle MatchStyle;
 
@@ -8,9 +8,9 @@
 
         public string Value;
 
-        public XcssAttribute() { }
+        public XcssAttributeData() { }
 
-        public XcssAttribute(string name, string value, AttributeMatchStyle matchStyle)
+        public XcssAttributeData(string name, string value, AttributeMatchStyle matchStyle)
         {
             Name = name;
             Value = value;

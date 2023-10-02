@@ -6,7 +6,7 @@ namespace XcssSelectors.Parsers
 {
     internal class XcssParser
     {
-        public static List<XcssSelector> Parse(string xcssSelector) {
+        public static List<Models.XcssSelectorData> Parse(string xcssSelector) {
             AntlrInputStream inputStream = new AntlrInputStream(xcssSelector);
             AntlrXcssLexer xcssLexer = new AntlrXcssLexer(inputStream);
             CommonTokenStream commonTokenStream = new CommonTokenStream(xcssLexer);

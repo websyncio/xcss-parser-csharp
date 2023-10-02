@@ -101,7 +101,7 @@
             return true;
         }
 
-        internal static string Build(XcssElement selector)
+        internal static string Build(XcssElementData selector)
         {
             var tag = string.IsNullOrEmpty(selector.Tag) ? "*" : selector.Tag;
             var xpath = XpathAxis(selector.Combinator) + tag;
@@ -137,7 +137,7 @@
             return xpath;
         }
 
-        internal static string Build(XcssSelector selector)
+        internal static string Build(XcssSelectorData selector)
         {
             var xpath = string.Empty;
             for (var i = 0; i < selector.Elements.Count; i++)
@@ -159,9 +159,14 @@
             return elementXpath;
         }
 
-        internal static string Build(List<XcssSelector> selectors)
+        internal static IEnumerable<string> Build(List<XcssSelectorData> selectors, XcssOptions options)
         {
-            var selectorXpaths = selectors.Select(s => "//" + RemoveDescendantAxis(Build(s)));
+            return selectors.Select(s => "//" + RemoveDescendantAxis(Build(s)));
+        }
+
+        internal static string Combine(IEnumerable<string> xpaths)
+        {
+            var selectorXpaths = xpaths.Select(s => "//" + RemoveDescendantAxis(s));
             return string.Join('|', selectorXpaths);
         }
 
@@ -209,7 +214,7 @@
             }
         }
 
-        private static string XpathTextCondition(XcssTextCondition textCondition)
+        private static string XpathTextCondition(XcssTextConditionData textCondition)
         {
             if (textCondition.MatchStyle == AttributeMatchStyle.Contains)
             {

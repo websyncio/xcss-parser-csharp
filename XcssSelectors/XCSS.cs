@@ -3,54 +3,36 @@ using XcssSelectors.Parsers;
 
 namespace XcssSelectors
 {
-    public class XCSS
+    public class Xcss
     {
-        public readonly string Xcss;
-        public readonly string Css;
-        public readonly string Xpath;
-        public readonly bool CombineWithRoot;
+        private readonly IEnumerable<string> _selectors;
+        private readonly IEnumerable<string> _xpaths;
+        public readonly string Selector;
+        public readonly string XPath;
+        public readonly bool ConcatWithRoot;
 
-        public XCSS(string css, string xpath, bool combineWithRoot=false)
+        private Xcss(IEnumerable<string> selectors, IEnumerable<string> xpaths, string combinedSelector, string combinedXpath, bool concatWithRoot = false)
         {
-            Xcss = string.IsNullOrWhiteSpace(css) ? xpath : css;
-            Css = css;
-            Xpath = xpath;
-            CombineWithRoot = combineWithRoot;
+            _selectors = selectors;
+            _xpaths = xpaths;
+            Selector = combinedSelector;
+            XPath = combinedXpath;
+            ConcatWithRoot = concatWithRoot;
         }
 
-        public XCSS(string xcssSelector, string cssSelector, string xpath)
+        public static Xcss Parse(string combinedXcss, XcssOptions options = XcssOptions.None)
         {
-            Xcss = xcssSelector;
-            Css = cssSelector;
-            Xpath = xpath;
+            var selectorsData = XcssParser.Parse(combinedXcss);
+            IEnumerable<string> selectors = selectorsData.Select(s => s.Selector);
+            IEnumerable<string> xpaths = XPathBuilder.Build(selectorsData, options);
+            string combinedXpath = XPathBuilder.Combine(xpaths);
+            return new Xcss(selectors, xpaths, combinedXcss, combinedXpath);
         }
 
-        public static XCSS FromXcss(string xcssSelector)
-        {
-            var selectors = XcssParser.Parse(xcssSelector);
-            //string css = CssBuilder.BuildFromParts(selectors);
-            string xpath = XPathBuilder.Build(selectors);
-
-            return new XCSS(null, xpath);
-        }
-
-        public XCSS Concat(XCSS xcss2)
-        {
-            string resultXpath = XPathBuilder.Concat(Xpath, xcss2.Xpath);
-            var resultCss = string.IsNullOrEmpty(Css) || string.IsNullOrEmpty(xcss2.Css)
-                                ? string.Empty
-                                : CssBuilder.Concat(Css, xcss2.Css);
-            return new XCSS(resultXpath, resultCss);
-        }
-
-        public static void FromXPath(string xcssSelector, bool v)
-        {
-            throw new NotImplementedException();
-        }
-
-        public static void FromCss(string xcssSelector, bool v)
-        {
-            throw new NotImplementedException();
-        }
+        //public Xcss Concat(Xcss xcss2)
+        //{
+        //    string resultXpath = XPathBuilder.Concat(XPath, xcss2.XPath);
+        //    return new Xcss(null, resultXpath);
+        //}
     }
 }

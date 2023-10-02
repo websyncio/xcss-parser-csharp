@@ -1,14 +1,14 @@
 ﻿namespace XcssSelectors.Models
 {
-    internal class XcssTextCondition
+    internal class XcssTextConditionData
     {
         public AttributeMatchStyle MatchStyle;
 
         public string Value;
 
-        public XcssTextCondition() { }
+        public XcssTextConditionData() { }
 
-        public XcssTextCondition(string value, AttributeMatchStyle matchStyle)
+        public XcssTextConditionData(string value, AttributeMatchStyle matchStyle)
         {
             Value = value;
             MatchStyle = matchStyle;

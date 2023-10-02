@@ -27,7 +27,7 @@ namespace XcssSelectors.Builders
             return s.Substring(0, s.Length - 1);
         }
 
-        internal static string BuildFromParts(List<XcssSelector> parts)
+        internal static string BuildFromParts(List<Models.XcssSelectorData> parts)
         {
             throw new NotImplementedException();
         }

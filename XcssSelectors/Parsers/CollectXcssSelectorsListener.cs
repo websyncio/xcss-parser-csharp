@@ -7,18 +7,18 @@ namespace XcssSelectors.Parsers
     internal class CollectXcssSelectorsListener : AntlrXcssParserBaseListener
     {
         private Stack<XcssSelectorContext> _parentContexts = new Stack<XcssSelectorContext>();
-        private XcssSelectorContext _context = new XcssSelectorContext();
-        public List<XcssSelector> Selectors = new List<XcssSelector>();
+        private XcssSelectorContext _context;
+        public List<XcssSelectorData> Selectors = new List<XcssSelectorData>();
 
         public override void EnterSelectorGroup([NotNull] AntlrXcssParser.SelectorGroupContext context)
         {
-            Selectors = new List<XcssSelector>();
+            Selectors = new List<XcssSelectorData>();
             base.EnterSelectorGroup(context);
         }
 
         public override void EnterSelector([NotNull] AntlrXcssParser.SelectorContext context)
         {
-            _context = new XcssSelectorContext();
+            _context = new XcssSelectorContext(context.GetText());
             base.EnterSelector(context);
         }
 
@@ -50,7 +50,7 @@ namespace XcssSelectors.Parsers
         public override void ExitSimpleSelectorSequence([NotNull] AntlrXcssParser.SimpleSelectorSequenceContext context)
         {
             _context.Selector.Elements.Add(_context.Element);
-            _context.Element = new XcssElement();
+            _context.Element = new XcssElementData();
             base.ExitSimpleSelectorSequence(context);
         }
 
@@ -74,7 +74,7 @@ namespace XcssSelectors.Parsers
 
         public override void EnterText([NotNull] AntlrXcssParser.TextContext context)
         {
-            _context.Text = new XcssTextCondition();
+            _context.Text = new XcssTextConditionData();
             base.EnterText(context);
         }
 
@@ -105,7 +105,7 @@ namespace XcssSelectors.Parsers
 
         public override void EnterAttrib([NotNull] AntlrXcssParser.AttribContext context)
         {
-            _context.Attribute = new XcssAttribute();
+            _context.Attribute = new XcssAttributeData();
             base.EnterAttrib(context);
         }
 

@@ -99,11 +99,10 @@ namespace XcssSelectorsTests
         {
             // .Arrange
             // .Act
-            var xcss = XCSS.FromXcss(xcssSelector);
+            var xcss = Xcss.Parse(xcssSelector);
 
             // .Assert
-            Assert.AreEqual(result, xcss.Xpath);
-            Assert.IsNull(xcss.Css);
+            Assert.AreEqual(result, xcss.XPath);
         }
 
         [TestCase("span[data-bind='text: Title']", "//span[@data-bind='text: Title']")]
@@ -114,32 +113,31 @@ namespace XcssSelectorsTests
         {
             // .Arrange
             // .Act
-            var xcss = XCSS.FromXcss(scssSelector);
+            var xcss = Xcss.Parse(scssSelector);
 
             // .Assert
-            Assert.AreEqual(result, xcss.Xpath);
-            Assert.IsNotNull(xcss.Css);
+            Assert.AreEqual(result, xcss.XPath);
         }
 
-        [TestCase("#myid", "#myid")]
-        [TestCase("div#myid", "div#myid")]
-        [TestCase("div#myid.classname", "div#myid.classname")]
-        [TestCase(".classname", ".classname")]
-        [TestCase("div.classname", "div.classname")]
-        [TestCase(".classname1.classname2", ".classname1.classname2")]
-        [TestCase("div.classname1.classname2", "div.classname1.classname2")]
-        [TestCase(".classname1 .classname2", ".classname1 .classname2")]
-        [TestCase("div.classname1 div.classname2", "div.classname1 div.classname2")]
-        [TestCase("div[src='1.png']", "div[src='1.png']")]
-        [TestCase("div[src=\"1.png\"]", "div[src=\"1.png\"]")]
-        [TestCase(">.search-bar", ">.search-bar")]
-        [TestCase(".nav-section >.search-bar", ".nav-section >.search-bar")]
-        [TestCase(".nav-section >.search-bar ul", ".nav-section >.search-bar ul")]
-        public void ConvertXcssToCss(string scssSelector, string result)
-        {
-            var xcss = XCSS.FromXcss(scssSelector);
-            Assert.AreEqual(result, xcss.Css);
-            Assert.IsEmpty(xcss.Xpath);
-        }
+        //[TestCase("#myid", "#myid")]
+        //[TestCase("div#myid", "div#myid")]
+        //[TestCase("div#myid.classname", "div#myid.classname")]
+        //[TestCase(".classname", ".classname")]
+        //[TestCase("div.classname", "div.classname")]
+        //[TestCase(".classname1.classname2", ".classname1.classname2")]
+        //[TestCase("div.classname1.classname2", "div.classname1.classname2")]
+        //[TestCase(".classname1 .classname2", ".classname1 .classname2")]
+        //[TestCase("div.classname1 div.classname2", "div.classname1 div.classname2")]
+        //[TestCase("div[src='1.png']", "div[src='1.png']")]
+        //[TestCase("div[src=\"1.png\"]", "div[src=\"1.png\"]")]
+        //[TestCase(">.search-bar", ">.search-bar")]
+        //[TestCase(".nav-section >.search-bar", ".nav-section >.search-bar")]
+        //[TestCase(".nav-section >.search-bar ul", ".nav-section >.search-bar ul")]
+        //public void ConvertXcssToCss(string scssSelector, string result)
+        //{
+        //    var xcss = Xcss.Parse(scssSelector);
+        //    Assert.AreEqual(result, xcss.Css);
+        //    Assert.IsEmpty(xcss.XPath);
+        //}
     }
 }

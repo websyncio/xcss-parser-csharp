@@ -4,10 +4,15 @@ namespace XcssSelectors.Parsers
 {
     internal class XcssSelectorContext
     {
-        public XcssTextCondition Text = new XcssTextCondition();
-        public XcssAttribute Attribute = new XcssAttribute();
-        public XcssElement Element = new XcssElement();
-        public XcssSelector Selector = new XcssSelector();
+        public XcssTextConditionData Text = new XcssTextConditionData();
+        public XcssAttributeData Attribute = new XcssAttributeData();
+        public XcssElementData Element = new XcssElementData();
+        public XcssSelectorData Selector;
+
+        public XcssSelectorContext(string originalSelector)
+        {
+            Selector = new XcssSelectorData(originalSelector);
+        }
 
         private int _xpathConditionLevel = 0;
 
