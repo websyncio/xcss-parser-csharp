@@ -7,8 +7,9 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Copyright></Copyright>
     <Description>XSCC selectors support</Description>
-    <FileVersion>1.0.1</FileVersion>
-    <AssemblyVersion>1.0.1</AssemblyVersion>
+    <Version>1.0.0-beta</Version>
+    <FileVersion>1.0.0</FileVersion>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>
